@@ -57,8 +57,11 @@ public class MainActivity extends AppCompatActivity implements InputModal.OnCred
 
         Credential clickedCredential = (Credential) parent.getItemAtPosition(position);
         String password = clickedCredential.getPassword();
+        String dePass ="";
+        try{dePass = EncryptDecrypt.decrypt(password);}
+        catch(Exception e){e.printStackTrace();}
                 ClipboardManager clipboard = (ClipboardManager) getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("password", password);
+                ClipData clip = ClipData.newPlainText("password",dePass );
                 if (clipboard != null) {
                     clipboard.setPrimaryClip(clip);
                     //Toast.makeText(getApplicationContext(), "Password copied to clipboard", Toast.LENGTH_SHORT).show();

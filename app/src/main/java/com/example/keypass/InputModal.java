@@ -1,6 +1,7 @@
 package com.example.keypass;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,16 @@ public class InputModal extends DialogFragment {
             @Override
             public void onClick(View v) {
                 DatabaseHelper dbHelper = new DatabaseHelper(getContext());
-                long id = dbHelper.insertCredential(editWebsite.getText().toString(), editUsername.getText().toString(), editPassword.getText().toString());
+                String codedpass = "";
+                try{
+                    codedpass = EncryptDecrypt.encrypt(editPassword.getText().toString());
+                }catch(Exception e){
+
+                    e.printStackTrace();
+                    Log.d("MyApp", "This is a debug message" + e);
+                }
+                Log.d("MyApp", "This is a debug message" + codedpass);
+                long id = dbHelper.insertCredential(editWebsite.getText().toString(), editUsername.getText().toString(), codedpass);
                 dbHelper.close();
                 if (listener != null) {
                     listener.onCredentialAdded();
