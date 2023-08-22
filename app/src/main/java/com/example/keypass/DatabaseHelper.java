@@ -77,4 +77,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return credentialsList;
     }
 
+    public int deleteCredential(long credentialId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(DatabaseHelper.TABLE_CREDENTIALS,
+                DatabaseHelper.COLUMN_ID + " = ?",
+                new String[]{String.valueOf(credentialId)});
+    }
+
 }

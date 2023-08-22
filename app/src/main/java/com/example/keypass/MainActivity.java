@@ -26,11 +26,12 @@ public class MainActivity extends AppCompatActivity implements InputModal.OnCred
     FloatingActionButton fab;
     CredentialAdapter adapter;
     List<Credential> credentialsList;
+    public static MainActivity mainActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mainActivity = this;
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
