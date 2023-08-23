@@ -41,9 +41,9 @@ public class CredentialAdapter extends ArrayAdapter<Credential> {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseHelper dbHelper = new DatabaseHelper(getContext());
-                dbHelper.deleteCredential(currentCredential.getId());
-                mainActivity.onCredentialAdded();
+                YesNoDialogFragment dialogFragment = new YesNoDialogFragment(currentCredential.getId());
+                dialogFragment.show(mainActivity.getSupportFragmentManager(), "myDialog");
+
             }
         });
 
